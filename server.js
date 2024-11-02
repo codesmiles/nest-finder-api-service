@@ -10,11 +10,12 @@ server.use(
 server.use(srcApp);
 
 
-server.get('/health', (req, res) => { 
+server.get('/', (req, res) => { 
     res.status(200).json({ message: 'Server is healthy' });
 })
    
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 server.listen(PORT, () => {
-  console.log(`Server is running on localhost ${PORT}`);
+    console.log(`Server is running on localhost ${PORT}`);
+    console.log(`API Documentation available at ${process.env.API_DOC}`);
 });

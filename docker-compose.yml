@@ -24,10 +24,7 @@ services:
         - ./:/usr/src/app:delegated
         - node_modules:/usr/src/app/node_modules
     command: sh -c 'if [ "$NODE_ENV" = "production" ]; then yarn start; else yarn dev; fi'
-    # user: "node"
     user: "${UID}:${GID}" 
-    ports:
-      - ${PORT}:3000
     depends_on:
       - redis
       - nest_finder_api_service_database
@@ -40,25 +37,25 @@ services:
     networks:
       - app-network
 
-  # port_forwarding:
-  #   container_name: nest_finder_api_service_port_forwarding
-  #   image: nginx
-  #   ports:
-  #     - "${NGINX_PORT}:80"
-  #     # - "443:443"  # Uncomment for HTTPS
-  #   volumes:
-  #     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-  #     # - ./nginx/ssl:/etc/nginx/ssl  # Uncomment for HTTPS certificates
-  #   depends_on:
-  #     - nest_finder_api_service
-  #   restart: unless-stopped
-  #   healthcheck:
-  #     test: ["CMD", "nginx", "-t"]
-  #     interval: 30s
-  #     timeout: 10s
-  #     retries: 3
-  #   networks:
-  #     - app-network
+  port_forwarding:
+    container_name: nest_finder_api_service_port_forwarding
+    image: nginx
+    ports:
+      - "${NGINX_PORT}:80"
+      # - "443:443"  # Uncomment for HTTPS
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      # - ./nginx/ssl:/etc/nginx/ssl  # Uncomment for HTTPS certificates
+    depends_on:
+      - nest_finder_api_service
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - app-network
 
   redis:
     container_name: nest_finder_api_service_redis
