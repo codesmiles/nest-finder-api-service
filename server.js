@@ -1,4 +1,4 @@
-// require("dotenv").config();
+require("dotenv").config();
 const express = require("express");
 // const srcApp = require("./src/api/app");
 const app = express();
@@ -9,7 +9,7 @@ app.use(
 );
 // app.use(srcApp);
 
-app.get('/hello', (req, res) => { 
+app.get('/health', (req, res) => { 
     res.status(200).json({ message: 'Server is healthy' });
 })
    
