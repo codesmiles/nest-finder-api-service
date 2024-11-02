@@ -15,6 +15,8 @@ server.get('/', (req, res) => {
 })
    
 server.listen(process.env.PORT, () => {
-    console.log(`Server is running on localhost:${process.env.API_PORT}`);
-    console.log(`API Documentation available at ${process.env.API_DOC}`);
+    console.log(`Server is running on ${process.env.DOMAIN}:${process.env.API_PORT}`);
+    console.log(
+      `API Documentation available at  ${process.env.DOMAIN}:${process.env.API_PORT}/${process.env.API_DOC}`
+    );
 });
