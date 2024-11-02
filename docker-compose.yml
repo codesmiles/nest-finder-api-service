@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  nestfinderapiservice:
+    image: nestfinderapiservice
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+# set up redis and mysql in a docker container in a nodejs project
+
+# this is what's in my dockerfile
+
+# FROM node:lts-alpine
+# ENV NODE_ENV=production
+# WORKDIR /usr/src/app
+# COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+# RUN npm install --production --silent && mv node_modules ../
+# COPY . .
+# EXPOSE 3000
+# RUN chown -R node /usr/src/app
+# USER node
+# CMD ["node", "server.js"]
