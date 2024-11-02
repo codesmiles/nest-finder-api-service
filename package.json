@@ -4,7 +4,7 @@
   "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=production node server",
-    "dev": "nodemon server.js"
+    "dev": "nodemon --legacy-watch server.js"
   },
   "repository": "git@github.com-codesmiles:codesmiles/nest-finder-api-service.git",
   "license": "MIT",
@@ -16,11 +16,14 @@
     "express-fileupload": "^1.5.1",
     "express-rate-limit": "^7.4.1",
     "joi": "^17.13.3",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.11.3",
     "nodemailer": "^6.9.16",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
-    "redis": "^4.7.0"
+    "redis": "^4.7.0",
+    "sequelize": "^6.37.5"
   },
   "devDependencies": {
     "dotenv": "^16.4.5",
