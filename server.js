@@ -14,8 +14,7 @@ server.get('/', (req, res) => {
     res.status(200).json({ message: 'Server is healthy' });
 })
    
-const PORT = process.env.PORT;
-server.listen(PORT, () => {
-    console.log(`Server is running on localhost ${PORT}`);
+server.listen(process.env.PORT, () => {
+    console.log(`Server is running on localhost:${process.env.API_PORT}`);
     console.log(`API Documentation available at ${process.env.API_DOC}`);
 });
