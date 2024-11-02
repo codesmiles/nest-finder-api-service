@@ -1,21 +1,22 @@
 FROM node:lts-alpine AS base
+RUN apk add --no-cache su-exec
 WORKDIR /usr/src/app
-COPY package.json yarn.lock ./
+RUN chown -R node:node /usr/src/app
 
 # Development stage
 FROM base AS development
-RUN yarn global add nodemon
-RUN yarn install
-COPY . .
-EXPOSE 3000
 USER node
+COPY --chown=node:node package.json yarn.lock ./
+RUN yarn install
+COPY --chown=node:node . .
+EXPOSE 3000
 CMD ["yarn", "dev"]
 
 # Production stage
 FROM base AS production
-RUN yarn install --production --silent && mv node_modules ../
-COPY . .
-EXPOSE 3000
-RUN chown -R node /usr/src/app
 USER node
+COPY --chown=node:node package.json yarn.lock ./
+RUN yarn install --production --frozen-lockfile
+COPY --chown=node:node . .
+EXPOSE 3000
 CMD ["yarn", "start"]

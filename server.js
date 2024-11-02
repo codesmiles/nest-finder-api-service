@@ -1,19 +1,20 @@
 require("dotenv").config();
 const express = require("express");
-// const srcApp = require("./src/api/app");
-const app = express();
+const srcApp = require("./src/app");
+const server = express();
 
-app.use(
+server.use(
   express.urlencoded({ extended: true }),
   express.json({ limit: "100mb" })
 );
-// app.use(srcApp);
+server.use(srcApp);
 
-app.get('/health', (req, res) => { 
+
+server.get('/health', (req, res) => { 
     res.status(200).json({ message: 'Server is healthy' });
 })
    
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on localhost ${PORT}`);
 });
