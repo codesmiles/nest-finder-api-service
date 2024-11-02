@@ -31,5 +31,3 @@ const resetPasswordSchema = joi.object({
   token: joi.string().required(),
 });
 exports.validateResetPassword = validator(resetPasswordSchema);
-
-const updateProfileSchema = joi.object({});
