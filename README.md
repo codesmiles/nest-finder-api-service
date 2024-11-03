@@ -8,8 +8,8 @@
 
 ## What's next?
 
-- integrate winston logger alongsides error handling
-- file structure and implementation pattern
+- logging alongsides error handling
+- file structure and implementation pattern (I am thinking along sides of modular pattern)
 - github action to run nodejs lints and tests
 - Then start thinking devops straight away
 - set up of unit, integration and end to end testing
