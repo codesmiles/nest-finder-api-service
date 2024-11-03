@@ -14,3 +14,4 @@
 - github action to run nodejs lints and tests
 - Then start thinking devops straight away
 - add static folder to keep assets(images) and templates(for mail)
+- local set up of unit, integration and probably end to end testing 
