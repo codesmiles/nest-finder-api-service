@@ -8,5 +8,4 @@
 
 ## What's next?
 
-- Database configuration
-- cache configuration
+- integrate winston logger to the mix
