@@ -13,3 +13,4 @@
 - api testings
 - github action to run nodejs lints and tests
 - Then start thinking devops straight away
+- add static folder to keep assets(images) and templates(for mail)
