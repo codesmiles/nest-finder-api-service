@@ -8,7 +8,7 @@
 
 ## What's next?
 
-- integrate winston logger to the mix
+- integrate winston logger alongsides error handling 
 - file structure and implementation pattern
 - api testings
 - github action to run nodejs lints and tests
