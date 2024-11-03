@@ -4,7 +4,13 @@
   "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=production node server",
-    "dev": "nodemon --legacy-watch server.js"
+    "dev": "nodemon --legacy-watch server.js",
+    "start:test": "NODE_ENV=test node src/app.js",
+    "test": "jest --config jest.config.js --detectOpenHandles",
+    "test:watch": "jest --config jest.config.js --watch",
+    "test:coverage": "jest --config jest.config.js --coverage",
+    "test:e2e": "start-server-and-test start:test http://localhost:8800 'jest --config jest-e2e.config.js'",
+    "test:all": "yarn test && yarn test:e2e"
   },
   "repository": "git@github.com-codesmiles:codesmiles/nest-finder-api-service.git",
   "license": "MIT",
@@ -16,8 +22,6 @@
     "express-fileupload": "^1.5.1",
     "express-rate-limit": "^7.4.1",
     "ioredis": "^5.4.1",
-    "jest": "^29.7.0",
-    "jest-puppeteer": "^10.1.4",
     "joi": "^17.13.3",
     "mysql": "^2.18.1",
     "mysql2": "^3.11.3",
@@ -25,7 +29,6 @@
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
-    "puppeteer": "^23.6.1",
     "sequelize": "^6.37.5",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
@@ -33,6 +36,15 @@
   },
   "devDependencies": {
     "dotenv": "^16.4.5",
-    "nodemon": "^3.1.7"
+    "jest": "^29.7.0",
+    "jest-puppeteer": "^10.1.4",
+    "nodemon": "^3.1.7",
+    "puppeteer": "^23.6.1",
+    "start-server-and-test": "^2.0.8",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true
   }
 }

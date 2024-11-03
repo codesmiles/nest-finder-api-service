@@ -5,6 +5,7 @@
 - Access the phpmyadmin GUI: http://localhost:8080
 - Access the redis commander GUI: http://127.0.0.1:5992/
 - Access to swagger documentation GUI: http://127.0.0.1:8800/api-docs/
+- Test all unit and end to end: docker exec -it nest_finder_api_service yarn test:all
 
 ## What's next?
 

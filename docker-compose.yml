@@ -2,8 +2,6 @@ version: '3.7'
 
 services:
   
- 
- 
   redis:
     container_name: nest_finder_api_service_redis
     image: redis:alpine
