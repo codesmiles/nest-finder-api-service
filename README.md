@@ -8,9 +8,9 @@
 
 ## What's next?
 
-- integrate winston logger alongsides error handling 
+- integrate winston logger alongsides error handling
 - file structure and implementation pattern
-- api testings
 - github action to run nodejs lints and tests
 - Then start thinking devops straight away
-- local set up of unit, integration and probably end to end testing 
+- set up of unit, integration and end to end testing
+- websockets integration

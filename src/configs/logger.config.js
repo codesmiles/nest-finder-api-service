@@ -27,12 +27,20 @@ const buildProdLogger = () => {
   });
 };
 
-module.exports = { buildDevLogger, buildProdLogger };
 
-//
-// If we're not in production then log to the `console` with the format:
-// `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
-//
-// if (process.env.NODE_ENV !== 'production') {
-//   logger.add(new winston.transports.Console({
-//     format: winston.format.simple(),
+if (process.env.NODE_ENV === "development") {
+  logger = buildDevLogger();
+} else {
+  logger = buildProdLogger();
+}
+
+module.exports = logger;
+
+
+// const logger = require("./src/api/loggers/index")
+// logger.info("text info",{meta1:"meta1"})
+// logger.warn("text warn")
+// logger.error("text error")
+// logger.debug("text debug")
+// logger.error(new Error("something went wrong"));
+  

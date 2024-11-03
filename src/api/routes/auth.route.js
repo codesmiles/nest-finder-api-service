@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-
+const cacheManager = require("../services/cache.service");
 
 // Example route file (./routes/users.js)
 /**
@@ -47,6 +47,17 @@ router.get("/api/users", (req, res) => {
 
 router.post("/api/users", (req, res) => {
   // Route implementation
+});
+
+// Test route
+router.get('/test-redis', async (req, res) => {
+  try {
+    await cacheManager.set('test-key', { message: 'Redis is working!' });
+    const result = await cacheManager.get('test-key');
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 module.exports = router;

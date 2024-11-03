@@ -1,4 +1,5 @@
 const { Sequelize } = require("sequelize");
+const logger = require("./logger.config");
 
 
 const sequelize = new Sequelize({
@@ -18,12 +19,24 @@ const sequelize = new Sequelize({
 
 // Test the connection
 const testDatabaseConnection = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log("Database connection has been established successfully.");
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
-  }
+  await sequelize.authenticate();
 };
 
-module.exports = { sequelize, testDatabaseConnection };
+const waitForDatabase = async () => {
+  let retries = 5;
+  while (retries) {
+    try {
+      await testDatabaseConnection();
+      logger.info("Database connection successful");
+      return true;
+    } catch (err) {
+      logger.warn(`Database connection failed. ${retries} retries left...`);
+      retries -= 1;
+      // Wait for 5 seconds before retrying
+      await new Promise((resolve) => setTimeout(resolve, 5000));
+    }
+  }
+  return false;
+};
+
+module.exports = { sequelize, waitForDatabase };
