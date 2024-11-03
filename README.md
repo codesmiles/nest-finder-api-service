@@ -9,3 +9,7 @@
 ## What's next?
 
 - integrate winston logger to the mix
+- file structure and implementation pattern
+- api testings
+- github action to run nodejs lints and tests
+- Then start thinking devops straight away
