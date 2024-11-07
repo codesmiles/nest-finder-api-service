@@ -1,19 +1,14 @@
 const express = require("express");
-const authRoutes = require("./api/routes/auth.route");
-const userRoutes = require("./api/routes/user.route");
-const swagger = require("./configs/documentation.config")
+const apiRoutes = require("./api/routes/index");
+const swagger = require("./configs/documentation.config");
 const { ResponseType, SendResponse } = require("../Response");
+const ROUTES = require("./configs/routes.config");
 const app = express();
 
 app.use(
   express.urlencoded({ extended: true }),
   express.json({ limit: "100mb" })
 );
-app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
-app.use(`/${process.env.API_DOC}`, ...swagger);
-
-
 
 // health check
 app.get("/", (req, res) => {
@@ -22,6 +17,7 @@ app.get("/", (req, res) => {
     .json(new SendResponse("Server Is Healthy", 200, ResponseType.SUCCESS));
 });
 
-
+app.use(`${ROUTES.apiV1}`, apiRoutes);
+app.use(`/${process.env.API_DOC}`, ...swagger);
 
 module.exports = app;

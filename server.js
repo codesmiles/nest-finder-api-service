@@ -6,11 +6,11 @@ const { waitForDatabase } = require("./src/configs/database.config");
 
 
 
-
+const PORT = process.env.PORT || 3000;
 const startServer = async () => {
   try {
     await waitForDatabase();
-    server.listen(process.env.PORT, () => {
+    server.listen(PORT, () => {
       logger.info(
         `Server is running on ${process.env.DOMAIN}:${process.env.API_PORT}`
       );
