@@ -1,7 +1,5 @@
 require("dotenv").config();
 require("./src/configs/cache.config");
-
-
 const server = require("./src/app");
 const logger = require("./src/configs/logger.config");
 const { waitForDatabase } = require("./src/configs/database.config");
