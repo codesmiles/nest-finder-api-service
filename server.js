@@ -5,7 +5,6 @@ const logger = require("./src/configs/logger.config");
 const { waitForDatabase } = require("./src/configs/database.config");
 
 
-
 const PORT = process.env.PORT || 3000;
 const startServer = async () => {
   try {
