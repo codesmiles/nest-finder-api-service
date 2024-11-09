@@ -28,13 +28,11 @@ const buildProdLogger = () => {
 };
 
 
-if (process.env.NODE_ENV === "development") {
-  logger = buildDevLogger();
-} else {
-  logger = buildProdLogger();
-}
+module.exports.logger =
+  process.env.NODE_ENV === "development"
+    ? buildDevLogger()
+    : (logger = buildProdLogger());
 
-module.exports = logger;
 
 
 // const logger = require("./src/api/loggers/index")

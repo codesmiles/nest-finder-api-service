@@ -1,6 +1,4 @@
-// config/redis.js
 const Redis = require("ioredis");
-const logger = require("./logger.config")
 
 const redisClient = new Redis({
   host: process.env.REDIS_HOST,
@@ -13,12 +11,4 @@ const redisClient = new Redis({
   maxRetriesPerRequest: 5,
 });
 
-redisClient.on("connect", () => {
-  logger.info("Redis client connected");
-});
-
-redisClient.on("error", (error) => {
-  logger.error("Redis Client Error:", error);
-});
-
-module.exports = redisClient;
+module.exports = { redisClient };

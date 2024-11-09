@@ -1,21 +1,13 @@
 const { joi, validator } = require("./validator");
 
-const signUpSchema = joi.object({
+const registerUserSchema = joi.object({
   name: joi.string().required(),
   email: joi.string().email().required(),
-  password: joi
-    .string()
-    .min(6)
-    .required()
-    .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
-  phone: joi.string().required(),
-  confirmPassword: joi.ref("password"),
-  role: joi.string().required(),
-  referredBy: joi.string(),
-  officeNumber: joi.string(),
+  password: joi.string().min(6).required().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
+  confirmPassword: joi.ref("password")
 });
 
-exports.validateSignUp = validator(signUpSchema);
+exports.validateRegisterUser = validator(registerUserSchema);
 
 const forgetPasswordSchema = joi.object({
   email: joi.string().email().required(),
