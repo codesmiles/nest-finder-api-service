@@ -2,7 +2,7 @@ const { Router } = require("express");
 const ROUTES = require("../utils/routes.utils");
 const authRoutes = require("./auth.route");
 const userRoutes = require("./user.route");
-// const cacheManager = require("../services/cache.service");
+
 
 const router = Router();
 
@@ -12,21 +12,17 @@ router.use(ROUTES.auth, authRoutes);
 
 module.exports = router;
 
-// const users = [];
 
-// router.get("/get-users", (req, res) => {
-//   res.json(users);
-// });
-// router.post("/post-user", (req, res) => {
-//   const { name, email } = req.body;
-
-//   if (!name || !email) {
-//     return res.status(400).json({ error: "Name and email are required" });
-//   }
-
-//   const newUser = { id: users.length + 1, name, email };
-//   users.push(newUser);
-//   res.status(201).json(newUser);
+// const cacheManager = require("../api/services/cache.service");
+// // Test route
+// router.get("/test-redis", async (req, res) => {
+//     try {
+//         await cacheManager.set("test-key", { message: "Redis is working!" });
+//         const result = await cacheManager.get("test-key");
+//         res.json(result);
+//     } catch (error) {
+//         res.status(500).json({ error: error.message });
+//     }
 // });
 
 // // Example route file (./routes/users.js)
@@ -76,13 +72,5 @@ module.exports = router;
 //   // Route implementation
 // });
 
-// // Test route
-// router.get("/test-redis", async (req, res) => {
-//   try {
-//     await cacheManager.set("test-key", { message: "Redis is working!" });
-//     const result = await cacheManager.get("test-key");
-//     res.json(result);
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
+
 // });

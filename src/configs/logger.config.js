@@ -27,13 +27,10 @@ const buildProdLogger = () => {
   });
 };
 
-
 module.exports.logger =
   process.env.NODE_ENV === "development"
     ? buildDevLogger()
     : (logger = buildProdLogger());
-
-
 
 // const logger = require("./src/api/loggers/index")
 // logger.info("text info",{meta1:"meta1"})
@@ -41,4 +38,3 @@ module.exports.logger =
 // logger.error("text error")
 // logger.debug("text debug")
 // logger.error(new Error("something went wrong"));
-  
