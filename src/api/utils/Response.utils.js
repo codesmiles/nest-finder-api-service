@@ -4,10 +4,10 @@ const ResponseType = Object.freeze({
 });
 
 class ResponseAbstract {
-  constructor(message, status, type, data = null) {
-    this.message = message;
+  constructor(status, type, message, data = null) {
     this.status = status;
     this.type = type;
+    this.message = message;
     this.data = data;
 
     if (this.constructor === ResponseAbstract) {
@@ -22,14 +22,21 @@ class ResponseAbstract {
 }
 
 class SendResponse extends ResponseAbstract {
-  constructor(message, status, type, data) {
-    super(message, status, type, data);
+  static SERVER_ERROR = "server_errors";
+  static EXISTING_USER = "user_already_exists";
+  static NOT_FOUND_ERROR = "not_found";
+  static VALIDATION_ERROR = "request_validation_errors";
+  static SERVICE_REQUEST_ERROR = "service_request_errors";
+  static SERVICE_REQUEST_SUCCESS = "service_request_successful";
+
+  constructor(status, type, message, data) {
+    super(status, type, message, data);
   }
 
   toJSon() {
     return {
-      type: this.type,
       status: this.status,
+      type: this.type,
       message: this.message,
       data: this.data,
     };
