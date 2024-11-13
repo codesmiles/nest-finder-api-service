@@ -13,18 +13,6 @@ router.use(ROUTES.auth, authRoutes);
 module.exports = router;
 
 
-// const cacheManager = require("../api/services/cache.service");
-// // Test route
-// router.get("/test-redis", async (req, res) => {
-//     try {
-//         await cacheManager.set("test-key", { message: "Redis is working!" });
-//         const result = await cacheManager.get("test-key");
-//         res.json(result);
-//     } catch (error) {
-//         res.status(500).json({ error: error.message });
-//     }
-// });
-
 // // Example route file (./routes/users.js)
 // /**
 //  * @swagger
