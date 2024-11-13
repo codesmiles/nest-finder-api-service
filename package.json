@@ -23,7 +23,6 @@
     "express-rate-limit": "^7.4.1",
     "ioredis": "^5.4.1",
     "joi": "^17.13.3",
-    "mysql": "^2.18.1",
     "mysql2": "^3.11.3",
     "nodemailer": "^6.9.16",
     "passport": "^0.7.0",

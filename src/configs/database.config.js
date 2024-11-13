@@ -1,7 +1,6 @@
 const { Sequelize } = require("sequelize");
 const { logger } = require("./logger.config");
 
-
 const sequelize = new Sequelize({
   dialect: "mysql",
   host: process.env.DB_HOST,
@@ -15,28 +14,29 @@ const sequelize = new Sequelize({
     acquire: 30000,
     idle: 10000,
   },
+  logging: (msg) => logger.debug(msg),
 });
 
-// Test the connection
-const testDatabaseConnection = async () => {
-  await sequelize.authenticate();
-};
-
 const waitForDatabase = async () => {
-  let retries = 5;
-  while (retries) {
-    try {
-      await testDatabaseConnection();
-      logger.info("Database connection successful");
-      return true;
-    } catch (err) {
-      logger.warn(`Database connection failed. ${retries} retries left...`);
-      retries -= 1;
-      // Wait for 5 seconds before retrying
-      await new Promise((resolve) => setTimeout(resolve, 5000));
-    }
-  }
-  return false;
+  return await sequelize
+    .authenticate()
+    .then(() => {
+      logger.info("Database connection successful.");
+    })
+    .catch((error) => {
+      logger.error("Unable to connect to the database: ", error);
+    });
 };
 
-module.exports = { sequelize, waitForDatabase };
+const migrate_tables = () => {
+  return sequelize
+    .sync()
+    .then(() => {
+      logger.info(` tables migrated successfully!`);
+    })
+    .catch((error) => {
+      logger.error(`Unable to migrate tables : ${error}`);
+    });
+};
+
+module.exports = { sequelize, waitForDatabase, migrate_tables };

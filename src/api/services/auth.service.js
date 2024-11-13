@@ -1,17 +1,16 @@
-const { User } = require("../models/index");
+const { User } = require("../models");
 
 module.exports.registerUserService = async (payload) => {
-    const [user, created] = await User.findOrCreate({
-      where: { email: payload.email},
-      defaults: {
-        ...payload
-      },
-    });
 
-    return created ?? user;
+  const user = await User.create({
+    name: payload.name,
+    email: payload.email,
+    password: payload.password,
+  });
+  return user;
 };
 
 module.exports.findUserService = async (payload) => {
-    const findUser = await User.findOne({ where: payload });
-    return findUser;
+  const findUser = await User.findOne({ where: payload });
+  return findUser;
 };

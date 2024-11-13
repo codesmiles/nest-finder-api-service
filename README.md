@@ -16,3 +16,4 @@
 - Then start thinking devops straight away
 - set up of unit, integration and end to end testing
 - websockets integration
+- Mysql and sequelize doc [HERE](https://www.digitalocean.com/community/tutorials/how-to-use-sequelize-with-node-js-and-mysql)

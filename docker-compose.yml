@@ -44,6 +44,11 @@ services:
       - "${MYSQL_LOCAL_PORT}:3306"
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
+      interval: 5s
     networks:
       - app-network
   
