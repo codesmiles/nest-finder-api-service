@@ -1,6 +1,6 @@
 require("dotenv").config();
 const server = require("./src/app");
-const { waitForDatabase, logger, redisClient } = require("./src/configs/index");
+const { waitForDatabase, logger, redisClient } = require("./src/configs");
 
 redisClient.on("connect", () => {
   logger.info("Redis client connected");
